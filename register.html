@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            width: 350px;
+            height: 500px;
+            padding: 30px;
+            border-radius: 5%;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+        }
+        .card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .card div {
+            font-size: 25px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .card input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid blue;
+            border-radius: 5px;
+        }
+        .card button {
+            width: 50%;
+            padding: 10px;
+            font-size: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 auto;
+        }
+        .card button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            color: #038eb0;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="https://png.pngtree.com/png-clipart/20230823/original/pngtree-bank-icon-blue-logo-simple-picture-image_8243629.png" alt="">
+        <div>My Bank</div>
+        <input id="username" type="text" placeholder="Username">
+        <input id="accountNo" type="text" placeholder="Account number">
+        <input id="password" type="password" placeholder="Password">
+        <button id="register">Register</button>
+        <a href="login.html" style="font-size: 16px;">Sign up</a>
+    </div>
+    
+    <script>
+        document.getElementById('register').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const accountNo = document.getElementById('accountNo').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!username || !accountNo || !password) {
+                alert('Fill the details...!');
+                return;
+            }
+
+            if (isNaN(accountNo)) {
+                alert('Account number must be numeric.');
+                return;
+            }
+
+            const userData = {
+                username,
+                accountNo,
+                password
+            };
+
+            localStorage.setItem('userData', JSON.stringify(userData));
+            alert('Registration Successful! You can now log in.');
+
+            // Clear input fields
+            document.getElementById('username').value = '';
+            document.getElementById('accountNo').value = '';
+            document.getElementById('password').value = '';
+
+            // Redirect to login page
+            window.location.href = 'login.html';
+            
+        });
+    </script>  
+</body>
+</html>
